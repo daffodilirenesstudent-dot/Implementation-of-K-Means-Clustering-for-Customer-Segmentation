@@ -1,4 +1,4 @@
-# Implementation-of-K-Means-Clustering-for-Customer-Segmentation
+<img width="851" height="641" alt="image" src="https://github.com/user-attachments/assets/34a40ef5-f224-43f2-868c-e64995d7991e" /># Implementation-of-K-Means-Clustering-for-Customer-Segmentation
 
 ## AIM:
 To write a program to implement the K Means Clustering for Customer Segmentation.
@@ -17,13 +17,61 @@ To write a program to implement the K Means Clustering for Customer Segmentation
 ```
 /*
 Program to implement the K Means Clustering for Customer Segmentation.
-Developed by: 
-RegisterNumber:  
+Developed by: Daffodil Irene.S
+RegisterNumber:  212225100006
 */
+
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+data = pd.read_csv("Mall_Customers.csv")
+X = data[['Annual Income (k$)', 'Spending Score (1-100)']]
+print(data.head())
+kmeans = KMeans(n_clusters=5, random_state=42)
+y_kmeans = kmeans.fit_predict(X)
+
+
+data['Cluster'] = y_kmeans
+
+print("\nClustered Data:")
+print(data.head())
+
+
+plt.figure()
+plt.scatter(X[y_kmeans == 0]['Annual Income (k$)'], 
+            X[y_kmeans == 0]['Spending Score (1-100)'], label='Cluster 0')
+
+plt.scatter(X[y_kmeans == 1]['Annual Income (k$)'], 
+            X[y_kmeans == 1]['Spending Score (1-100)'], label='Cluster 1')
+
+plt.scatter(X[y_kmeans == 2]['Annual Income (k$)'], 
+            X[y_kmeans == 2]['Spending Score (1-100)'], label='Cluster 2')
+
+plt.scatter(X[y_kmeans == 3]['Annual Income (k$)'], 
+            X[y_kmeans == 3]['Spending Score (1-100)'], label='Cluster 3')
+
+plt.scatter(X[y_kmeans == 4]['Annual Income (k$)'], 
+            X[y_kmeans == 4]['Spending Score (1-100)'], label='Cluster 4')
+
+# Plot centroids
+plt.scatter(kmeans.cluster_centers_[:,0], 
+            kmeans.cluster_centers_[:,1], 
+            s=200, label='Centroids')
+
+plt.title("Customer Segmentation using K-Means")
+plt.xlabel("Annual Income (k$)")
+plt.ylabel("Spending Score (1-100)")
+plt.legend()
+plt.show()
+
+
 ```
 
 ## Output:
-![K Means Clustering for Customer Segmentation](sam.png)
+<img width="926" height="381" alt="Screenshot 2026-03-09 204106" src="https://github.com/user-attachments/assets/14943480-c6c0-48ec-8bcc-9bac0e7013a3" />
+<img width="851" height="641" alt="Screenshot 2026-03-09 204118" src="https://github.com/user-attachments/assets/dba97f88-98a7-4046-b064-91e134e55fd8" />
+
+
 
 
 ## Result:
